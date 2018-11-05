@@ -1,0 +1,11 @@
+body {
+
+    background-color: pink;
+    background: url("../images/candy_background.jpg");
+   
+}
+
+h1 {
+    text-align: center;
+    margin: 20px;
+}

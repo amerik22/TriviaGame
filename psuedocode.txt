@@ -1,0 +1,7 @@
+Trivia game psuedocode
+
+game is timed for 120 seconds
+click start button start game and timer
+when game ends game will calculate for the player how many questions they answered correctly and incorrectly
+questions are mutiple choice or true/false
+player an only choose one answer for each question
