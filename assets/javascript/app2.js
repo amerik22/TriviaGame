@@ -176,6 +176,11 @@ $(document).ready(function(){
 
         if (number === 0) {
             stop();
+            scoreQuiz();
+            $("#trivia").hide();
+            $("#timer").hide();
+            $("#results").show();
+
         }
 
       }
