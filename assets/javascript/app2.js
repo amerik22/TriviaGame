@@ -114,9 +114,9 @@ var questions = [
  }
 ]
 
-var quizContainer = document.getElementById("trivia");
-var resultsContainer = document.getElementById("results");
-var submitButton = document.getElementById("submit");
+//var quizContainer = document.getElementById("trivia");
+//var resultsContainer = document.getElementById("results");
+//var submitButton = document.getElementById("submit");
 
 $(document).ready(function(){
     $("#results").hide();
