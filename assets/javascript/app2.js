@@ -1,8 +1,6 @@
-//global variables
 var correct = 0;
 var wrong = 0;
 
-//questions and answers for quiz
 var questions = [
     {
       text: "What candy bar was named after a family's horse?",
@@ -114,116 +112,108 @@ var questions = [
             },
     correctAnswer: "b",
  }
-
 ]
 
-//Document Ready
-$(document).ready(function() {
+var quizContainer = document.getElementById("trivia");
+var resultsContainer = document.getElementById("results");
+var submitButton = document.getElementById("submit");
 
-    //Hide quiz and answer results
-    $("#trivia").hide();
+$(document).ready(function(){
     $("#results").hide();
+    $("#trivia").hide();
 
-    //Generate Questions and Answer choices
-    function startQuiz (){
+    function startQuiz(){
+        var output = [];
+        var answers;
 
-      //store answers  
-      var answers;
+        for(var i = 0; i< questions.length; i++){
+            answers= [];
+        
+            for(letter in questions[i].choices){
 
-     //Store output to append to DOM
-      var output = [];
+                answers.push(
+                    '<label>'
+                        + '<input type="radio" name="question' + i + '" value= "'+ letter + '">'
+                        + letter + ':  ' 
+                        + questions[i].choices[letter]
+                    + '</label><br>'
+                );
+            }
 
-      for (var i = 0; i < questions.length; i++) {
-          answers =[];
-      for(letter in question[i].choices){
+        output.push(
+        '<div class="question"><h2>' + questions[i].text + '</h2></div>'
+        + '<div class="answers"><h3>' + answers.join('') + '</h3></div>'
+            );
 
-       // Creat radio buttons
-        answers.push(
-            "<label>" +
-            "<input type='radio' name=question" + i + " value=" + letter + "> " +
-            questions[i].choices[letter] +
-            "</label><br>"
-        )
-      }
 
-      //Push questions and choices to Output
-      output.push(
-        "<div class='question'><h2>" + questions[i].question + "</h2></div>" +
-        "<div class='answers'>" + answers.join(" ") + "</div><br>" 
-      )
+
+        }
+
+        $("#trivia").append(output.join(" ") + "<br>" + "<button type='button' class='btn btn-dark' id='submit'>Submit Answers</button>");
+
+
     }
 
-    //Append output to DOM
-    $("#trivia").append(output.join(" ") + "<br>" + "<button type='button' class='buttons' id='submit'>SUBMIT</button>");
 
-}
+            
+      
 
+  $("#start").on("click", function(){
+    
+    //Timer
 
-// Start quiz
-
-$("#start").on("click", function () {
-
-    // Timer
-    var number = 120;
+    var number = 60;
     var intervalId;
 
     function run() {
         clearInterval(intervalId);
-        invervalId = setInterval(decerement, 1000);
-    }
+      intervalId = setInterval(decrement, 1000);
+      }
 
-    function decerement() {
+      function decrement() {
         number--;
-        $("#time").text(number);
+        $("#timer").html("<h2>" + "Time left: " + number + "</h2>");
+
         if (number === 0) {
-            stop()
+            stop();
         }
+
+      }
+
+      function stop() {
+        clearInterval(intervalId);
     }
-
-    function stop() {
-        clearInterval(invervalId);
-        scoreQuiz();
-        $("#trivia").hide();
-        $("#results").show();
-    };
-
     run();
 
     startQuiz();
 
-    $("#trivia").show();
-    $("#start").hide();
+      $("#start").hide();
+      $("#trivia").show();
 
-
-    //Score quiz
-    function scoreQuiz() {
-        for (i = 0; i < questions.length; i++) {
-
+    function scoreQuiz(){
+        for(var i = 0; i < questions.length; i++){
             if ($("input[name=question" + i + "]").is(":checked")) {
                 if ($("input[name=question" + i + "]:checked").val() === questions[i].correctAnswer) {
-                    right++;
+                    correct++;
                 } else {
                     wrong++;
                 }
             } 
-        }
-//Write results to DOM
-        $("#right").text(right);
-        $("#wrong").text(wrong);
- 
-}
-     
 
-    // Done Button
-    $("#done").on("click", function () {
+        }
+
+        $("#correct").html("<h2>" + "Correct Answers: " + correct + "</h2>");
+        $("#wrong").html("<h2>" + "Wrong Answers: " + wrong + "<h2>");
+    }
+
+    $("#submit").on("click", function(){
         scoreQuiz();
         $("#trivia").hide();
+        $("#timer").hide();
         $("#results").show();
     });
+
+     
+  });
+
 })
-})
-
-
-
-
-

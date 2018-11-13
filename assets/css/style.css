@@ -1,11 +1,36 @@
 body {
 
-    background-color: pink;
-    background: url("../images/candy_background.jpg");
+    background: url("../images/cotton-candy-background.png");
    
 }
 
-h1 {
+.jumbotron {
     text-align: center;
     margin: 20px;
+    font-family: 'Khula', sans-serif;
+    background-color: #efc4e8;
 }
+
+.subtitle{
+    font-family: 'Khula', sans-serif;
+    font-size: 40px;
+}
+
+
+button{
+    align-content: center;
+}
+
+.question{
+    font-family: 'Khula', sans-serif;
+}
+
+.answers{
+    font-family: 'Khula', sans-serif;
+}
+
+#results{
+    font-family: 'Khula', sans-serif; 
+    font-size:30px;
+}
+
